@@ -1,0 +1,163 @@
+
+module fullAdder(in1, in2, in3, out1, out2);
+  
+  input in1, in2, in3 ;
+  output out1, out2; 
+  assign out1 =  in1 ^ in2 ^ in3 ;
+  assign out2 = (in1&in2) | (in1&in3) | (in2&in3);
+endmodule
+
+module adder16_16(A1, A2, result);
+  input [15:0] A1, A2;
+  output [16:0]result;
+  wire[15:0] forCarries;
+  fullAdder f1(A1[0], A2[0], 0, result[0], forCarries[0]);
+  fullAdder f2(A1[1], A2[1], forCarries[0], result[1], forCarries[1]);
+  fullAdder f3(A1[2], A2[2], forCarries[1], result[2], forCarries[2]);
+  fullAdder f4(A1[3], A2[3], forCarries[2], result[3], forCarries[3]);
+  fullAdder f5(A1[4], A2[4], forCarries[3], result[4], forCarries[4]);
+  fullAdder f6(A1[5], A2[5], forCarries[4], result[5], forCarries[5]);
+  fullAdder f7(A1[6], A2[6], forCarries[5], result[6], forCarries[6]);
+  fullAdder f8(A1[7], A2[7], forCarries[6], result[7], forCarries[7]);
+  fullAdder f9(A1[8], A2[8], forCarries[7], result[8], forCarries[8]);
+  fullAdder f10(A1[9], A2[9], forCarries[8], result[9], forCarries[9]);
+  fullAdder f11(A1[10], A2[10], forCarries[9], result[10], forCarries[10]);
+  fullAdder f12(A1[11], A2[11], forCarries[10], result[11], forCarries[11]);
+  fullAdder f13(A1[12], A2[12], forCarries[11], result[12], forCarries[12]);
+  fullAdder f14(A1[13], A2[13], forCarries[12], result[13], forCarries[13]);
+  fullAdder f15(A1[14], A2[14], forCarries[13], result[14], forCarries[14]);
+  fullAdder f16(A1[15], A2[15], forCarries[14], result[15], forCarries[15]);
+  assign result[16] = forCarries[15] ;
+
+endmodule
+
+module mux2_1(I0, I1, s , o);
+  input [15:0] I0, I1;
+  input s;
+  output[15:0] o;
+  wire notOfS;
+  wire [15:0] outOfAnds0 , outOfAnds1;
+  not u1(notOfS,s);
+  and u2(outOfAnds0[0], I0[0], notOfS);
+  and u3(outOfAnds1[0], I1[0], s);
+  or u4(o[0] ,outOfAnds0[0], outOfAnds1[0]);
+  
+  and u2(outOfAnds0[1], I0[1], notOfS);
+  and u3(outOfAnds1[1], I1[1], s);
+  or u4(o[1] ,outOfAnds0[1], outOfAnds1[1]);
+  
+  and u2(outOfAnds0[2], I0[2], notOfS);
+  and u3(outOfAnds1[2], I1[2], s);
+  or u4(o[2] ,outOfAnds0[2], outOfAnds1[2]);
+  
+  and u2(outOfAnds0[3], I0[3], notOfS);
+  and u3(outOfAnds1[3], I1[3], s);
+  or u4(o[3] ,outOfAnds0[3], outOfAnds1[3]);
+  
+  and u2(outOfAnds0[4], I0[4], notOfS);
+  and u3(outOfAnds1[4], I1[4], s);
+  or u4(o[4] ,outOfAnds0[4], outOfAnds1[4]);
+  
+  and u2(outOfAnds0[5], I0[5], notOfS);
+  and u3(outOfAnds1[5], I1[5], s);
+  or u4(o[5] ,outOfAnds0[5], outOfAnds1[5]);
+  
+  and u2(outOfAnds0[6], I0[6], notOfS);
+  and u3(outOfAnds1[6], I1[6], s);
+  or u4(o[6] ,outOfAnds0[6], outOfAnds1[6]);
+  
+  and u2(outOfAnds0[7], I0[7], notOfS);
+  and u3(outOfAnds1[7], I1[7], s);
+  or u4(o[7] ,outOfAnds0[7], outOfAnds1[7]);
+  
+  and u2(outOfAnds0[8], I0[8], notOfS);
+  and u3(outOfAnds1[8], I1[8], s);
+  or u4(o[8] ,outOfAnds0[8], outOfAnds1[8]);
+  
+  and u2(outOfAnds0[9], I0[9], notOfS);
+  and u3(outOfAnds1[9], I1[9], s);
+  or u4(o[9] ,outOfAnds0[9], outOfAnds1[9]);
+  
+  and u2(outOfAnds0[10], I0[10], notOfS);
+  and u3(outOfAnds1[10], I1[10], s);
+  or u4(o[10] ,outOfAnds0[10], outOfAnds1[10]);
+  
+  and u2(outOfAnds0[11], I0[11], notOfS);
+  and u3(outOfAnds1[11], I1[11], s);
+  or u4(o[11] ,outOfAnds0[11], outOfAnds1[11]);
+  
+  and u2(outOfAnds0[12], I0[12], notOfS);
+  and u3(outOfAnds1[12], I1[12], s);
+  or u4(o[12] ,outOfAnds0[12], outOfAnds1[12]);
+  
+  and u2(outOfAnds0[13], I0[13], notOfS);
+  and u3(outOfAnds1[13], I1[13], s);
+  or u4(o[13] ,outOfAnds0[13], outOfAnds1[13]);
+  
+  and u2(outOfAnds0[14], I0[14], notOfS);
+  and u3(outOfAnds1[14], I1[14], s);
+  or u4(o[14] ,outOfAnds0[14], outOfAnds1[14]);
+  
+  and u2(outOfAnds0[15], I0[15], notOfS);
+  and u3(outOfAnds1[15], I1[15], s);
+  or u4(o[15] ,outOfAnds0[15], outOfAnds1[15]);
+  
+endmodule
+
+module mux3_1(T0, T1, T2 ,F12, finalResult);
+  input [31:0] T0, T1, T2;
+  input [1:0]F12;
+  output [31:0] finalResult;
+  always @(T0 or T1 or T2)
+    begin 
+      case(F12)
+        0 : finalResult = T0 ;
+        1 : finalResult = T1;
+        2,3 : finalResult = T2;
+      endcase
+    end
+endmodule
+
+module choseBetween_1_AndBToAdd(A, B, F0, resultAdder);
+  input [15:0] A, B  ;
+  input F0;
+  output [15:0]resultAdder;
+  logic [15:0] BOr_1;
+  mux2_1 mux1(B, 1, F0, BOr_1);
+  adder16_16 finalAdder(A, BOr_1, resultAdder);
+endmodule
+
+module subtractor(S1, S2, resultS);
+  input [15:0] S1, S2;
+  output [15:0] resultS;
+  logic [15:0] notOfS2, primaryResult;
+  not n1(notOfS2, S2);
+  adder16_16 sub(S1, notOfS2, primaryResult);
+  adder16_16 add_1_(primaryResult, 1 ,resultS);
+endmodule
+
+module choseBetween_1_AndBToSub(A, B, F0, resultSub);
+  input [15:0] A, B  ;
+  input F0;
+  output [15:0]resultSub;
+  logic [15:0] BOr_1s;
+  mux2_1 mux2(B, 1, F0, BOr_1s);
+  subtractor finalSubtractor(A, BOr_1s, resultSub);
+endmodule
+
+module multipler(A, B, C);
+  input [15:0] A,B;
+  output [31:0]C;
+  assign C = A*B;
+endmodule
+
+module ALU(A, B, F, finalFinalResult);
+  input [15:0] A, B;
+  input [2:0] F;
+  output [31:0] finalFinalResult;
+  logic [31:0] logicAdder, logicSub, logicMul;
+  choseBetween_1_AndBToAdd choseBOr_1Adder(A, B, F[0], logicAdder);
+  choseBetween_1_AndBToSub choseBOr_1Sub(A, B, F[0], logicSub);
+  multipler multiple(A, B, logicMul);
+  mux3_1 choseAddOrSubOrMul(logicAdder, logicSub, logicMul,{F[2],F[1]},finalFinalResult);
+endmodule
